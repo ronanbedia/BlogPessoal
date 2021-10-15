@@ -16,4 +16,6 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 
 	public UsuarioModel findByNome(String nome);
 
+	public UsuarioModel save(Usuario usuario);
+
 }
