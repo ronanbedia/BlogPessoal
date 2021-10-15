@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.generation.blogPessoal.models.UsuarioModel.Usuario;
+import com.generation.blogPessoal.models.UsuarioModel;
 
 public class UserDetailsImplement implements UserDetails {
 
@@ -19,7 +19,7 @@ public class UserDetailsImplement implements UserDetails {
     private String password;
     private List<GrantedAuthority> autorizacoes;
 
-    public UserDetailsImplement(Usuario user) {
+    public UserDetailsImplement(UsuarioModel user) {
         this.email = user.getEmail();
         this.password = user.getSenha();
     }

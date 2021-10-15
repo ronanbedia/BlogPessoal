@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.generation.blogPessoal.models.UserLogin;
 import com.generation.blogPessoal.models.UsuarioModel;
-import com.generation.blogPessoal.models.UsuarioModel.Usuario;
 import com.generation.blogPessoal.repositories.UsuarioRepository;
 
 @Service
@@ -19,7 +18,7 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repository;
 
-    public UsuarioModel CadastrarUsuario(Usuario usuario) {
+    public UsuarioModel CadastrarUsuario(UsuarioModel usuario) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         String senhaEncoder = encoder.encode(usuario.getSenha());
@@ -31,7 +30,7 @@ public class UsuarioService {
 
     public Optional<UserLogin> Logar(Optional<UserLogin> user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        Optional<Usuario> usuario = repository.findByUsuario(user.get().getUsuario());
+        Optional<UsuarioModel> usuario = repository.findByUsuario(user.get().getUsuario());
 
         if(usuario.isPresent()){
             if(encoder.matches(user.get().getSenha(), usuario.get().getSenha())) {

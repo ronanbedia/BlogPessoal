@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.blogPessoal.models.UserLogin;
 import com.generation.blogPessoal.models.UsuarioModel;
-import com.generation.blogPessoal.models.UsuarioModel.Usuario;
 import com.generation.blogPessoal.service.UsuarioService;
 
 @RestController
@@ -31,7 +30,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<UsuarioModel> Post(@RequestBody Usuario usuario) {
+    public ResponseEntity<UsuarioModel> Post(@RequestBody UsuarioModel usuario) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(usuarioService.CadastrarUsuario(usuario));
     }

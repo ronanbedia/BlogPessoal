@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.generation.blogPessoal.models.UsuarioModel;
-import com.generation.blogPessoal.models.UsuarioModel.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 
@@ -16,7 +15,7 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 
 	public UsuarioModel findByNome(String nome);
 
-	public UsuarioModel save(Usuario usuario);
+	public UsuarioModel save(UsuarioModel usuario);
 
 	public Optional<UsuarioModel> findByEmail(String email);
 
