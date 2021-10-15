@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
 import java.util.List;
 
 @Entity
@@ -18,9 +19,9 @@ public class TemaModel {
 	@NotNull
 	private String descricao;
 
-	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("tema")
-	private List<PostagemModel> postagem;
+    @OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("tema")
+    private List<PostagemModel> postagem;
 
 	public long getId() {
 		return id;

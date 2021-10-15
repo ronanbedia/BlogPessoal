@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import java.util.Date;
 
@@ -12,65 +11,74 @@ import java.util.Date;
 @Table(name = "tb_postagem")
 public class PostagemModel {
 
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	@NotNull
-	@Size(min = 5, max = 100)
-	private String titulo;
+    @NotNull
+    private String titulo;
 
-	@NotNull
-	@Size(min = 5, max = 100)
-	private String texto;
+    @NotNull
+    private String texto;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date date = new java.sql.Date(System.currentTimeMillis());
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date = new java.sql.Date(System.currentTimeMillis());
 
-	@ManyToOne
-	@JsonIgnoreProperties("postagem")
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    @JsonIgnoreProperties("postagem")
+    private UsuarioModel usuario;
 
-	private TemaModel tema;
+    @ManyToOne
+    @JoinColumn(name = "id_tema")
+    @JsonIgnoreProperties("postagem")
+    private TemaModel tema;
 
-	public long getId() {
-		return id;
-	}
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
+    }
 
-	public String getTitulo() {
-		return titulo;
-	}
+    public TemaModel getTema() {
+        return tema;
+    }
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
+    public void setTema(TemaModel tema) {
+        this.tema = tema;
+    }
 
-	public String getTexto() {
-		return texto;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public String getTitulo() {
+        return titulo;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-	public TemaModel getTema() {
-		return tema;
-	}
+    public String getTexto() {
+        return texto;
+    }
 
-	public void setTema(TemaModel tema) {
-		this.tema = tema;
-	}
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }
