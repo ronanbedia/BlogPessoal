@@ -21,19 +21,19 @@ public class UsuarioModel {
 	    @NotBlank
 	    @Size(min = 2, max = 100)
 	    private String nome;
-
-	    @NotBlank
-	    @Size(min = 5, max = 100)
-	    private String usuario;
+	    
+		@NotBlank
+		@Size(min = 5, max = 100)
+		private String email;
 
 	    @NotBlank
 	    @Size(min = 5, max = 100)
 	    private String senha;
 
-	    public Usuario(Long id, String nome, String usuario, String senha) {
+	    public Usuario(Long id, String nome, String email, String senha) {
 	        this.id = id;
 	        this.nome = nome;
-	        this.usuario = usuario;
+	        this.email = email;
 	        this.senha = senha;
 	    }
 	    
@@ -55,12 +55,12 @@ public class UsuarioModel {
 			this.nome = nome;
 		}
 
-		public String getUsuario() {
-			return usuario;
+		public String getEmail() {
+			return email;
 		}
 
-		public void setUsuario(String usuario) {
-			this.usuario = usuario;
+		public void setEmail(String email) {
+			this.email = email;
 		}
 
 		public String getSenha() {
