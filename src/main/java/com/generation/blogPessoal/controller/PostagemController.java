@@ -23,6 +23,7 @@ public class PostagemController {
 
 	@Autowired
 	private PostagemRepository repository;
+	
 
 	@GetMapping
 	public ResponseEntity<List<PostagemModel>> GetAll() {

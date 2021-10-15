@@ -15,6 +15,7 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 
 	public UsuarioModel findByNome(String nome);
 
+	@SuppressWarnings("unchecked")
 	public UsuarioModel save(UsuarioModel usuario);
 
 	public Optional<UsuarioModel> findByEmail(String email);

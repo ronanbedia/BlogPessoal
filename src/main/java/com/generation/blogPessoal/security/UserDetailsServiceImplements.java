@@ -12,6 +12,7 @@ import com.generation.blogPessoal.repositories.UsuarioRepository;
 
 public class UserDetailsServiceImplements implements UserDetailsService {
 
+	
 	@Autowired
 	private UsuarioRepository userRepository;
 

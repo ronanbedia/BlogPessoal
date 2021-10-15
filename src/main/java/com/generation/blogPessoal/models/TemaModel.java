@@ -10,6 +10,7 @@ import java.util.List;
 @Table(name = "tb_tema")
 public class TemaModel {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;

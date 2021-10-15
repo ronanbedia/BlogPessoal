@@ -12,6 +12,7 @@ import java.util.Date;
 @Table(name = "tb_postagem")
 public class PostagemModel {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -71,8 +72,5 @@ public class PostagemModel {
 	public void setTema(TemaModel tema) {
 		this.tema = tema;
 	}
-	
-	
-
 
 }

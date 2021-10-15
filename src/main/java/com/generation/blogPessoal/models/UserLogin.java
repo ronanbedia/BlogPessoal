@@ -2,6 +2,7 @@ package com.generation.blogPessoal.models;
 
 public class UserLogin {
 
+	
 	private String nome;
 
 	private String usuario;
