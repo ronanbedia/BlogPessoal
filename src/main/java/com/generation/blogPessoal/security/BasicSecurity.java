@@ -1,5 +1,7 @@
 package com.generation.blogPessoal.security;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,9 +15,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class BasicSecurity extends WebSecurityConfigurerAdapter {
 
+	
+	private @Autowired UserDetailsServiceImplements service; 
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("caique").password(passwordEncoder().encode("caique"))
+		auth.userDetailsService(service);
+		auth.inMemoryAuthentication().withUser("Ronan").password(passwordEncoder().encode("Ronan"))
 				.authorities("ROLE_ADMIN");
 	}
 
@@ -25,12 +31,16 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-
-		http.authorizeRequests().antMatchers("/usuarios/cadastrar").permitAll().antMatchers("/usuarios/logar")
-				.permitAll().antMatchers(HttpMethod.OPTIONS).permitAll().anyRequest().authenticated().and().httpBasic()
-				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().cors().and()
-				.csrf().disable();
-	}
-
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/usuarios/cadastrar").permitAll()
+                .antMatchers(HttpMethod.POST, "/usuarios/logar").permitAll()
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
+                .anyRequest().authenticated()
+                .and().httpBasic()
+                .and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().cors()
+                .and().csrf().disable();
+    }
 }

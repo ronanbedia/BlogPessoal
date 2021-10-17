@@ -6,22 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.generation.blogPessoal.models.UsuarioModel;
 import com.generation.blogPessoal.repositories.UsuarioRepository;
 
+@Service
 public class UserDetailsServiceImplements implements UserDetailsService {
 
-	
 	@Autowired
 	private UsuarioRepository userRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Optional<UsuarioModel> user = userRepository.findByEmail(email);
-		user.orElseThrow(() -> new UsernameNotFoundException(email + " not found."));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		return user.map(UserDetailsImplement::new).get();
-	}
+        Optional<UsuarioModel> objetoOptional = userRepository.findByEmail(username);
 
+        if (objetoOptional.isPresent()) {
+            return new UserDetailsImplement(objetoOptional.get());
+        } else {
+            throw new UsernameNotFoundException(username + " Não existe!");
+        }
+
+    }
 }

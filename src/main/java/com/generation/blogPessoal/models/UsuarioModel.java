@@ -33,14 +33,14 @@ public class UsuarioModel {
 
 	@NotBlank
 	@Size(min = 5, max = 100)
-	@ApiModelProperty(example = "email@email.com.br") 
-	@NotNull(message = "O atributo Usuário é Obrigatório!") 
-	@Email(message = "O atributo Usuário deve ser um email válido!") 
-	private String usuario; 
-
+	@ApiModelProperty(example = "email@email.com.br")
+	@NotNull(message = "O atributo Usuário é Obrigatório!")
 	@Email(message = "O atributo Usuário deve ser um email válido!")
-	@Size(min = 5, max = 100)
 	private String email;
+
+	//@Email(message = "O atributo Usuário deve ser um email válido!")
+	@Size(min = 5, max = 100)
+	private String usuario;
 
 	@NotBlank
 	@Size(min = 5, max = 100)
@@ -50,22 +50,8 @@ public class UsuarioModel {
 	@JsonIgnoreProperties("tema")
 	private List<PostagemModel> postagem = new ArrayList<>();
 
-	public UsuarioModel(Long id, String nome, String usuario, String email, String senha) {
-        this.id = id;
-        this.nome = nome;
-        this.usuario = usuario;
-        this.email = email;
-        this.senha = senha;
-    }
-
-	public UsuarioModel(String nome, String usuario, String email, String senha) {
-        this.nome = nome;
-        this.usuario = usuario;
-        this.email = email;
-        this.senha = senha;
-    }
-
-	public UsuarioModel () {}
+	public UsuarioModel() {
+	}
 
 	public Long getId() {
 		return id;
@@ -84,11 +70,11 @@ public class UsuarioModel {
 	}
 
 	public String getUsuario() {
-		return usuario;
+	return usuario;
 	}
 
 	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	this.usuario = usuario;
 	}
 
 	public String getEmail() {
@@ -112,6 +98,6 @@ public class UsuarioModel {
 	}
 
 	public void setPostagem(List<PostagemModel> postagem) {
-        this.postagem = postagem;
-    }
+		this.postagem = postagem;
+	}
 }
